@@ -1,5 +1,13 @@
+import './style.css';
 const btn = document.getElementById("getBrewery");
 const out = document.getElementById("output");
+const beer = document.getElementById("beer");
+
+btn.addEventListener("click", async () =>  {
+  beer.classList.remove('spin');
+  void beer.offsetWidth;
+  beer.classList.add('spin');
+});
 
 btn.addEventListener("click", getRandomBrewery);
 
@@ -17,7 +25,7 @@ async function getRandomBrewery() {
 
     const phone = formatPhone(b.phone);
     out.textContent =
-`${b.name ?? "Unknown"}
+`Name: ${b.name ?? "Unknown"}
 Type: ${b.brewery_type ?? "—"}
 Location: ${[b.city, b.state, b.country].filter(Boolean).join(", ") || "—"}
 Phone: ${phone}
@@ -32,3 +40,4 @@ function formatPhone(p) {
   const d = String(p).replace(/\D/g, "");
   return d.length === 10 ? `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}` : p;
 }
+
